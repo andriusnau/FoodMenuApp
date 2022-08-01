@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FoodMenuApi.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiVersion("1.0")]
+    [Route("api/v1/[controller]")]
     public class MealsController : ControllerBase
     {
         private readonly MealApi _mealApi;
@@ -19,7 +18,7 @@ namespace FoodMenuApi.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            if (name == null || name == String.Empty)
+            if (string.IsNullOrEmpty(name))
             {
                 return NotFound();
             }
