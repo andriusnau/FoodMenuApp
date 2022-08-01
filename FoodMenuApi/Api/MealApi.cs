@@ -40,7 +40,7 @@ namespace FoodMenuApi.Api
             var meal = await GetData(url);
             if (meal == null)
             {
-                throw new Exception("No meal found");
+                return new List<Meal>();
             }
 
             return meal;
@@ -55,7 +55,7 @@ namespace FoodMenuApi.Api
             }
 
             var result = JsonConvert.DeserializeObject<MealApiResult>(ApiResult);
-            if (result == null && result.Meals.Count == 0)
+            if (result == null && result.Meals != null && result.Meals.Count == 0)
             {
                 throw new Exception("No meal found");
             }

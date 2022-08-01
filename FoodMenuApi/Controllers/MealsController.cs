@@ -24,7 +24,7 @@ namespace FoodMenuApi.Controllers
             }
 
             Meals meals = await _mealApi.GetMeals(name);
-            if (meals == null)
+            if (meals == null || meals.Meal == null)
             {
                 return NotFound(name);
             }
